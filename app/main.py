@@ -37,7 +37,9 @@ class Personagem:
 
 
 class Heroi(Personagem):
-
+    """
+    Classe do Heroi com um metodo a mais, de habilidade especial
+    """
     def __init__(self, nome, vida, nivel, ataque_basico, habilidade_especial):
         super().__init__(nome, vida, nivel, ataque_basico)
         self.__habilidade_especial = habilidade_especial
@@ -55,8 +57,9 @@ class Heroi(Personagem):
     
 
 class Inimigo(Personagem):
-
-    # ✅ corrigido: agora aceita o ataque_basico
+    """
+    Classe de inimigo com um atributo a mais, tipo de ataque
+    """
     def __init__(self, nome, vida, nivel, ataque_basico, tipo):
         super().__init__(nome, vida, nivel, ataque_basico)
         self.__tipo = tipo
@@ -69,6 +72,9 @@ class Inimigo(Personagem):
     
 
 class Jogo:
+    """
+    Classe do jogo, está servindo como "main", mostra as opções e roda o jogo
+    """
 
     Herois = {"Pirata":
               {"vida": 120, "nivel": 5,"habilidade comum": "golpe de espada", "habilidade extra": "Chuva de espadas"},
