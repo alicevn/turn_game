@@ -38,6 +38,11 @@ class Heroi(Personagem):
     def exibir_detalhes(self):
         return f"{super().exibir_detalhes()} - Habilidade: {self.get_habilidade()}"
     
+    def ataque_especial(self, alvo):
+        dano = self.get_nivel() * 5
+        alvo.receber_ataque(dano)
+        print(f"\n{self.get_nome()} atacou {alvo.get_nome()} com o ataque especial {self.get_habilidade()} e causou {dano} de dano!")
+    
 
 class Inimigo(Personagem):
     def __init__(self, nome, vida, nivel, tipo):
@@ -53,7 +58,7 @@ class Inimigo(Personagem):
 
 class Jogo:
     def __init__(self):
-        self.heroi = Heroi(nome="Heroi", vida=100, nivel=5, habilidade="Super Força")
+        self.heroi = Heroi(nome="Pirata", vida=100, nivel=5, habilidade="Chuva de espadas")
         self.inimigo = Inimigo(nome="Vampiro", vida=130, nivel=6, tipo="sangue")
 
     def iniciar_batalha(self):
@@ -69,12 +74,17 @@ class Jogo:
 
             if escolha == "1":
                 self.heroi.atacar(self.inimigo)
-            
+            if escolha == "2":
+                self.heroi.ataque_especial(self.inimigo)
             else:
                 print("Escolha uma opção válida")
+
+            if self.inimigo.get_vida() > 0:
+                
+                self.inimigo.atacar(self.heroi)
             
         if self.heroi.get_vida() > 0:
-            print(f"\nO {self.heroi.get_nome()} ganhou o batalha! \n Parabéns!")
+            print(f"\nO {self.heroi.get_nome()} ganhou a batalha! \n Parabéns!")
         else:
             print(f"\nO {self.inimigo.get_nome()} ganhou a batalha! \n Boa sorte na próxima vez!")
 
